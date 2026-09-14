@@ -24,3 +24,7 @@ keys/
 .vercel
 .DS_Store
 npm-debug.log*
+
+# archivos de agente que regenera `next dev` en cada arranque
+AGENTS.md
+CLAUDE.md
