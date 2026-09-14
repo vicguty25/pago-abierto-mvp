@@ -22,12 +22,19 @@ por un proceso que no controla, frente a un cliente que ya pagó.
 Pago Abierto reemplaza eso por un link: el cliente ve cuánto debe, a quién le
 paga y en qué estado va, y autoriza desde su propia wallet.
 
+![Crear una solicitud de cobro](docs/screenshots/01-crear-solicitud.jpg)
+
 ## Qué hace
 
 - Crear una solicitud de cobro con monto, moneda y concepto.
 - Una pantalla pública de pago, sin cuenta ni instalación para el cliente.
 - Autorización real vía Open Payments: cotización, consentimiento y pago.
 - Historial con el embudo `created → pending → paid`.
+
+<p align="center">
+  <img src="docs/screenshots/02-pantalla-de-pago.jpg" width="49%" alt="Pantalla pública de pago">
+  <img src="docs/screenshots/03-historial-y-embudo.jpg" width="49%" alt="Historial y embudo">
+</p>
 
 **Métrica norte:** el porcentaje de solicitudes que llegan a `paid`. Lo que se
 está probando es la claridad, no la tecnología — Interledger es el medio, no la
