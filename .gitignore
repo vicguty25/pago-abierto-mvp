@@ -1,0 +1,26 @@
+# dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# build
+.next/
+out/
+build/
+next-env.d.ts
+*.tsbuildinfo
+
+# entorno — nunca commitear credenciales
+.env
+.env.*
+!.env.example
+
+# llaves privadas de Open Payments
+*.key
+private.key
+keys/
+
+# plataforma
+.vercel
+.DS_Store
+npm-debug.log*
