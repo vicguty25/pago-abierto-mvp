@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/*
+  Sistema visual de Pago Abierto. Ver docs/brand.md para el porque de cada
+  decision. Resumen: papel claro, tinta densa, un solo acento verde.
+*/
+@theme {
+  --color-papel: #fbfaf7;
+  --color-tinta: #07130f;
+  --color-esmeralda: #0f9d6e;
+  --color-profundo: #064e3b;
+  --color-alerta: #c2410c;
+  --color-ambar: #b45309;
+  --color-borde: #e3e0d8;
+  --color-tenue: #6b7c74;
+
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+}
+
+html {
+  background-color: var(--color-papel);
+}
+
+body {
+  background-color: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  Los montos van en monoespaciada con cifras tabulares para que se alineen en
+  columna. En una lista de cobros esto es la diferencia entre comparar de un
+  vistazo y leer digito por digito.
+*/
+.monto {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Foco visible y consistente: se navega con teclado mas de lo que se cree. */
+:focus-visible {
+  outline: 2px solid var(--color-esmeralda);
+  outline-offset: 2px;
+}
