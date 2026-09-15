@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { nanoid } from "nanoid";
 
 import { paymentRequests } from "@/db/schema";
+import { appUrlFrom } from "@/lib/app-url";
 import { db } from "@/lib/db";
 import { getPaymentProvider } from "@/lib/payments";
 import { PaymentProviderError } from "@/lib/payments/types";
@@ -73,7 +74,7 @@ export async function POST(
   }
 
   const provider = getPaymentProvider();
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+  const appUrl = appUrlFrom(request);
   const nonce = nanoid(16);
 
   try {

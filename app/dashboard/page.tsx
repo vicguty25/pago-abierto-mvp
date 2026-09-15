@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { StatusPill } from "@/components/status-pill";
+import { getProviderName } from "@/lib/payments";
 import { expireStaleRequests, getFunnel, listRequests } from "@/lib/requests";
 import { formatAmount } from "@/lib/validation";
 
@@ -16,6 +17,8 @@ export default async function DashboardPage() {
     listRequests(),
   ]);
 
+  const enDemostracion = getProviderName() === "mock";
+
   return (
     <div>
       <h1 className="font-display text-2xl font-semibold tracking-tight">
@@ -25,6 +28,15 @@ export default async function DashboardPage() {
         La metrica que decide si este producto sirve es una sola: cuantas
         solicitudes terminan pagadas.
       </p>
+
+      {enDemostracion ? (
+        <p className="mt-6 rounded-lg border border-ambar/30 bg-ambar/8 px-4 py-3 text-sm text-ambar">
+          <strong className="font-medium">Datos de demostracion.</strong> Esta
+          instancia corre con el proveedor simulado. Ninguna de las solicitudes
+          de abajo representa un cobro real, y los porcentajes no son metricas
+          de uso.
+        </p>
+      ) : null}
 
       <div className="mt-7 grid gap-4 sm:grid-cols-4">
         <Metrica

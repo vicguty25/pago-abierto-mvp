@@ -20,7 +20,6 @@ let cached: PaymentProvider | null = null;
 export function getPaymentProvider(): PaymentProvider {
   if (cached) return cached;
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
   const requested = process.env.PAYMENT_PROVIDER?.trim().toLowerCase();
 
   const walletAddressUrl = process.env.OPEN_PAYMENTS_WALLET_ADDRESS?.trim();
@@ -45,7 +44,7 @@ export function getPaymentProvider(): PaymentProvider {
     );
   }
 
-  cached = new MockPaymentProvider(appUrl);
+  cached = new MockPaymentProvider();
   return cached;
 }
 

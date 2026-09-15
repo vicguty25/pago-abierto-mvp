@@ -70,9 +70,9 @@ awk '{printf "%s\\n", $0}' private.key
 
 ### En Vercel
 
-Las mismas cuatro variables, más `NEXT_PUBLIC_APP_URL` con el dominio real de
-producción. Esto último importa: la pantalla de consentimiento redirige a esa
-URL, y si apunta a `localhost` el cliente se queda colgado después de aprobar.
+Las mismas cuatro variables. `NEXT_PUBLIC_APP_URL` es opcional: si se deja
+vacía, la app deduce su dominio del de producción de Vercel o del host de la
+petición. Solo hace falta fijarla cuando haya un dominio propio.
 
 Vercel guarda los saltos de línea como `\n` literales.
 `lib/payments/index.ts` los convierte de vuelta antes de pasar la llave al SDK.

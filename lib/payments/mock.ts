@@ -25,27 +25,26 @@ import type {
 export class MockPaymentProvider implements PaymentProvider {
   readonly name = "mock" as const;
 
-  constructor(private readonly appUrl: string) {}
-
   async createIncomingPayment(
     input: CreateIncomingPaymentInput,
   ): Promise<CreateIncomingPaymentResult> {
-    // La URL es ficticia pero conserva la forma de un recurso de Open Payments,
-    // para que nada en la app dependa de si es real.
-    return {
-      incomingPaymentUrl: `${this.appUrl}/mock-wallet/incoming/${input.requestId}`,
-    };
+    // Un identificador opaco, no una URL de este servidor: asi el mock no
+    // necesita saber en que dominio corre la app.
+    return { incomingPaymentUrl: `urn:mock:incoming:${input.requestId}` };
   }
 
   async startPayment(input: StartPaymentInput): Promise<StartPaymentResult> {
-    const consent = new URL("/mock-wallet/consent", this.appUrl);
+    // El origen sale de la URL de retorno, que ya viene resuelta por quien
+    // llama. Un componente menos que configurar mal.
+    const origen = new URL(input.returnUrl).origin;
+    const consent = new URL("/mock-wallet/consent", origen);
     consent.searchParams.set("return", input.returnUrl);
     consent.searchParams.set("nonce", input.nonce);
     consent.searchParams.set("interact_ref", nanoid(16));
 
     return {
       redirectUrl: consent.toString(),
-      continueUri: `${this.appUrl}/mock-wallet/continue/${nanoid(10)}`,
+      continueUri: `urn:mock:continue:${nanoid(10)}`,
       continueToken: nanoid(24),
       quoteId: `mock-quote-${nanoid(10)}`,
       // El mock no cobra comision: el debito es igual al monto solicitado.
