@@ -6,6 +6,8 @@
 sobre [Interledger Open Payments](https://openpayments.dev), para freelancers en
 LATAM que facturan a clientes en Estados Unidos y Europa.
 
+**→ [pago-abierto-mvp.vercel.app](https://pago-abierto-mvp.vercel.app)**
+
 ---
 
 ## El problema
