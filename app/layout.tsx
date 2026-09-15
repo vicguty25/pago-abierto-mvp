@@ -26,11 +26,34 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
+const TITULO = "Pago Abierto — cobra al exterior sin explicar un SWIFT";
+const DESCRIPCION =
+  "Solicitudes de cobro cross-border sobre Interledger Open Payments, para freelancers en LATAM que facturan a clientes en Estados Unidos y Europa.";
+
 export const metadata: Metadata = {
-  title: "Pago Abierto — cobra al exterior sin explicar un SWIFT",
-  description:
-    "Solicitudes de cobro cross-border sobre Interledger Open Payments, pensadas para freelancers en LATAM que facturan a clientes en Estados Unidos y Europa.",
+  // Sin metadataBase, Next resuelve las URL de las imagenes contra localhost y
+  // el enlace no se previsualiza en ningun sitio donde se comparta.
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000"),
+  ),
+  title: TITULO,
+  description: DESCRIPCION,
   icons: { icon: "/logo.svg" },
+  openGraph: {
+    type: "website",
+    locale: "es_CO",
+    siteName: "Pago Abierto",
+    title: TITULO,
+    description: DESCRIPCION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITULO,
+    description: DESCRIPCION,
+  },
 };
 
 export default function RootLayout({
